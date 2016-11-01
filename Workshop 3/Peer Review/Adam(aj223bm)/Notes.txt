@@ -1,9 +1,44 @@
 Notes for all
 
-Seldin:
+-The code is runnable. No compile time errors. 
 
+-No problemsor buggsf ound. The Ace is calculated correctly.
 
-Rasmus:
+-There is an association between PlayGame and IView not a dependancy.
+Oterwise the UML class diagram is correct.
 
+- Observer pattorn. Player to subject but still Player has the method
+notify() whitch the observer should have allthough this is not a major
+problem. The pattern shows that if observer A makes a changes observer
+B should get the change, in this case the subject 'triggers' the change.
+We also miss some out-prints beacuse of the printing method is called somewhere
+but then just keeps on adding breaklines (1500 lines to be exact which is a bit too much..).
 
-Henry:
+-You did no solw the hidden dependancy.
+We belive the hidden deppendancey is stil there. 
+ (hint) we sweds maybe want 's' to stand for spela (play)
+
+	or if user does not have a 'p' on keyboard (e.g. a chinese keyboard)
+	we will need to hardcode the logic to change this, instead of just
+	adding a different view (e.g a chineseView)
+	(although a chinese keyboard does have a 'p' you should get the point)
+
+- In playerthere is a method called Addsub(). Try to use standard java naming convention when you rogram.
+	Insted it sould be AddSub() acording to java naming convetion.
+
+- The Strategy patern is implemented correctly Soft17 but the oneAce in Soft17Strategy dead code.
+
+- Yes the win strategy is implemented corectly.
+
+- Their dealing of a card stategy is not the best, they reduced to duplicate code by adding a dublicate code in the dealer
+ (you can use the 2nd method and just pass in a true instead of having another method for only the case of true)
+also you are just adding more dependency, try using an alternative method like an abstract class or something).
+
+what we mean is: you already have all you need to make this method in the hit class, why make it so that dealer have to deal with it?
+		- you dont even use the Deck you are provided with..
+
+- Not implemented or not implemented correctly
+		:Remove the bad, hidden, dependency between the controller and view (new game, hit, stand)
+		:The code for getting a card from the deck, show the card and give it to a player is duplicated in a number of places. 
+		 Make a refactoring to remove this duplication and that supports low coupling/high cohesion. The code that is duplicated i similar to this
+		: Observer may be working but it's not folowing the pattern 100%
