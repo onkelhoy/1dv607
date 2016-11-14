@@ -1,9 +1,28 @@
 Notes for all
 
-Seldin:
+- No UML class diagram that we could find.
 
+- The hidden dependancy is handled. although it can be made much simpliar
+  and will reduce your code slighlty (by using a value of some sort instead
+  of creating methods for each scenario play,hit,stand). 
 
-Rasmus:
+- Soft17 is implemented
+	hasAce is not madatory in this solution. You can get away with a
+	less code, but this is just picky and one could say this adds
+	readability.
 
+- Win strategy is implemented. 
 
-Henry:
+- Duplicated code is still there, it seams that the group has completly
+  forgotten about this. Or maybe they missunderstood, but the part
+	c = deck.GetCard()
+	c.show(..)
+	player.DealCard(c)
+
+  is dublicated both in AmericanNewGameStrategy and InternatioalNewGameStrategy
+  and should be logiclly removed. One could argue about the same code in Dealer
+  but we don't.
+
+- Observer pattern not implemented. The Interface is created and implemented in PlayGame
+  but the code is not implemented, the implementation of the Observer pattern is not used
+  completly correct. But it's on a good direction to solving the problem.
