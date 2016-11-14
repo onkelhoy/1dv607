@@ -68,10 +68,4 @@ public class Player {
 
     return score;
   }
-
-    public void GetShowDeal(Deck a_deck, Boolean a_show){
-        Card c = a_deck.GetCard();
-        c.Show(a_show);
-        DealCard(c);
-    }
 }

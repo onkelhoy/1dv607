@@ -38,7 +38,7 @@ public class Dealer extends Player implements Observer {
   public boolean Hit(Player a_player) {
     if (m_deck != null && a_player.CalcScore() < g_maxScore && !IsGameOver()) {
 
-      a_player.GetShowDeal(m_deck, true);
+      GetShowDeal(a_player, m_deck, true);
       
       return true;
     }
@@ -81,10 +81,16 @@ public class Dealer extends Player implements Observer {
         //getting a new card
         // notify(); // from observer
 
-        GetShowDeal(m_deck, true);
+        GetShowDeal(this, m_deck, true);
 
         subject.setState(0);
       }
     }
+  }
+
+  public void GetShowDeal(Player a_player, Deck a_deck, Boolean a_show){
+    Card c = a_deck.GetCard();
+    c.Show(a_show);
+    a_player.DealCard(c);
   }
 }
