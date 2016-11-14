@@ -7,8 +7,6 @@ public abstract class Observer {
     protected Subject subject;
 
     //override
-    public void Notify(){
-
-    }
+    public void Update();
 
 }
