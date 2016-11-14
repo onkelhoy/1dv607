@@ -3,14 +3,14 @@ package BlackJack.model;
 import java.util.List;
 import java.util.LinkedList;
 
-public class Player extends Observer {
+public class Player {
 
   private List<Card> m_hand;
   protected final int g_maxScore = 21;
 
   public Player()
   {
-  
+      
     m_hand = new LinkedList<Card>();
     System.out.println("Hello List World");
   }
@@ -68,4 +68,10 @@ public class Player extends Observer {
 
     return score;
   }
+
+    public void GetShowDeal(Deck a_deck, Boolean a_show){
+        Card c = a_deck.GetCard();
+        c.Show(a_show);
+        DealCard(c);
+    }
 }
