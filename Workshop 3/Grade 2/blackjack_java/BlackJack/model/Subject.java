@@ -7,7 +7,7 @@ import java.util.List;
  * Created by henry on 2016-10-28.
  */
 public class Subject {
-    private List<Observer> observers = new ArrayList<>();
+    /*private List<Observer> observers = new ArrayList<>();
     private int state = 0;
 
     public void setState(int state) { this.state = state; } //notify should be called from here...
@@ -24,5 +24,5 @@ public class Subject {
         for(Observer o : observers){
             o.Update();
         }
-    }
+    }*/
 }

@@ -11,10 +11,9 @@ public class Program
   public static void main(String[] a_args)
   {
     //create subject object
-    Subject subject = new Subject();
-    Game g = new Game(subject); //pass subject as param
-    IView v = new SwedishView(); //new SwedishView();
-    PlayGame ctrl = new PlayGame(subject, v, g); //pass subject as param
+    Game g = new Game(); //pass subject as param
+    IView v = new SimpleView(); //new SwedishView();
+    PlayGame ctrl = new PlayGame(v, g); //pass subject as param
 
     while (ctrl.Play());
   }

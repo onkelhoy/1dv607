@@ -1,21 +1,19 @@
 package BlackJack.controller;
 
-import BlackJack.model.Observer;
 import BlackJack.model.Subject;
+import BlackJack.model.Subscriber;
 import BlackJack.view.IView;
 import BlackJack.model.Game;
 
-public class PlayGame implements Observer {
+public class PlayGame implements Subscriber {
   private IView a_view;
   private Game a_game;
-  private Subject subject;
 
-  public PlayGame(Subject subject, IView a_view, Game a_game){
-    this.subject = subject;
+  public PlayGame(IView a_view, Game a_game){
     this.a_view = a_view;
     this.a_game = a_game;
 
-    subject.subscribe(this);
+    this.a_game.Subscribe(this);
   }
   //implement observer and wait for furture updates
   public boolean Play() {
@@ -48,22 +46,17 @@ public class PlayGame implements Observer {
   }
 
   @Override
-  public void Update() {
-    if(subject.getState() == 0){
+  public void Update() { //wait and then print
+    System.out.println("wait");
       try {
         Thread.sleep(1800); //wait
-
-        //print cards?
-        a_view.DisplayDealerStatus();
-        a_view.DisplayDealerHand(a_game.GetDealerHand(), a_game.GetDealerScore());
-        a_view.DisplayPlayerHand(a_game.GetPlayerHand(), a_game.GetPlayerScore());
-
-
-        subject.setState(1);
-        subject.Notify();
       } catch (InterruptedException e) {
-        e.printStackTrace();
+        for(int i = 0; i < 10000000; i++){} //fake timer..
       }
-    }
+
+
+    a_view.DisplayDealerStatus();
+    a_view.DisplayDealerHand(a_game.GetDealerHand(), a_game.GetDealerScore());
+    a_view.DisplayPlayerHand(a_game.GetPlayerHand(), a_game.GetPlayerScore());
   }
 }

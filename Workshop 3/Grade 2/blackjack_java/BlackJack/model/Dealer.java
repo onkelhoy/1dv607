@@ -2,26 +2,22 @@ package BlackJack.model;
 
 import BlackJack.model.rules.*;
 
-public class Dealer extends Player implements Observer {
+import java.util.ArrayList;
+import java.util.List;
+
+public class Dealer extends Player implements Publisher {
   //implement observer and update when getting a new card
+  private List<Subscriber> subscribers = new ArrayList<>();
   private Deck m_deck;
   private INewGameStrategy m_newGameRule;
   private IHitStrategy m_hitRule;
   private IWinStrategy m_winRule;
-  private Subject subject;
 
-  public Dealer(Subject subject, RulesFactory a_rulesFactory) {
+  public Dealer(RulesFactory a_rulesFactory) {
   
     m_newGameRule = a_rulesFactory.GetNewGameRule();
     m_hitRule = a_rulesFactory.GetHitRule();
     m_winRule = a_rulesFactory.GetWinRule();
-    this.subject = subject;
-
-    subject.subscribe(this);
-    /*for(Card c : m_deck.GetCards()) {
-      c.Show(true);
-      System.out.println("" + c.GetValue() + " of " + c.GetColor());
-    }    */
   }
   
   
@@ -61,32 +57,31 @@ public class Dealer extends Player implements Observer {
     return false;
   }
 
-  public boolean Stand() { //subject in parameter
+  public boolean Stand(){
     if(m_deck != null){
       ShowHand();
 
-      for(Card c : GetHand()){
-        c.Show(true);
+      while(m_hitRule.DoHit(this)){
+        Notify();
+        GetShowDeal(this, m_deck, true);
       }
-      subject.setState(0);
-      subject.Notify(); //it will call the playGame notify
+
+      Notify();
     }
     return true;
   }
 
-  @Override
-  public void Update() {
-    if(subject.getState() == 1){
-      if(m_hitRule.DoHit(this)){
-        //getting a new card
-        // notify(); // from observer
-
-        GetShowDeal(this, m_deck, true);
-
-        subject.setState(0);
-      }
+  public void Notify(){
+    for(Subscriber sub : subscribers){
+      sub.Update();
     }
   }
+
+  public void subscribe(Subscriber sub){
+    subscribers.add(sub);
+  }
+
+
 
   public void GetShowDeal(Player a_player, Deck a_deck, Boolean a_show){
     Card c = a_deck.GetCard();
