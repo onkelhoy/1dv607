@@ -1,6 +1,7 @@
 package BlackJack.view;
 
-import BlackJack.model.Observer;
+//import BlackJack.model.Observer;
+import BlackJack.model.Publisher;
 
 public interface IView
 {
